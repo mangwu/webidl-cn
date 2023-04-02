@@ -1,0 +1,32 @@
+/* style-var-click-highlighting */
+var {
+  cursor: pointer;
+}
+var.selected0 {
+  background-color: #f4d200;
+  box-shadow: 0 0 0 2px #f4d200;
+}
+var.selected1 {
+  background-color: #ff87a2;
+  box-shadow: 0 0 0 2px #ff87a2;
+}
+var.selected2 {
+  background-color: #96e885;
+  box-shadow: 0 0 0 2px #96e885;
+}
+var.selected3 {
+  background-color: #3eeed2;
+  box-shadow: 0 0 0 2px #3eeed2;
+}
+var.selected4 {
+  background-color: #eacfb6;
+  box-shadow: 0 0 0 2px #eacfb6;
+}
+var.selected5 {
+  background-color: #82ddff;
+  box-shadow: 0 0 0 2px #82ddff;
+}
+var.selected6 {
+  background-color: #ffbcf2;
+  box-shadow: 0 0 0 2px #ffbcf2;
+}
