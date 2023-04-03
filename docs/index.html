@@ -15,32 +15,30 @@
    <link rel="stylesheet" href="./Styles/style1.css" />
    <link rel="stylesheet" href="./Styles/style2.css" />
    <link rel="stylesheet" href="./Styles/style3.css" />
-
-
+   <!-- 部署时将开发模式的development.js换为生产模式的production.min.js-->
+   <script
+   crossorigin
+   src='https://unpkg.com/react@17/umd/react.development.js'
+   ></script>
+   <script
+   crossorigin
+   src='https://unpkg.com/react-dom@17/umd/react-dom.development.js'
+   ></script>
+   <!-- 加载JSXbabel包 -->
+   <script src='https://unpkg.com/babel-standalone@6/babel.min.js'></script>
+   <script
+      type='module'
+      crossorigin='anonymous'
+      src='https://lib.baomitu.com/antd/4.17.0-alpha.3/antd-with-locales.js'
+      integrity='sha512-mNRzG/3TZDWsNwFfB9z+4SrMfWr0yPOcWV3jz9SYACY8ITC4jMp53AATgj50PFZupyOJOYNkC1MYI0fZoSBo4g=='
+   ></script>
  <body class="h-entry status-LS">
   <div class="head">
-    <a class="logo" href="https://whatwg.org/"> <img alt="WHATWG" crossorigin height="100" src="https://resources.whatwg.org/logo-webidl.svg"> </a> 
-   <hgroup>
-    <h1 class="p-name no-ref" id="title">Web IDL</h1>
-    <p id="subtitle">Living Standard — Last Updated <time class="dt-updated" datetime="2023-04-02">2 April 2023</time> </p>
-   </hgroup>
-   <div data-fill-with="spec-metadata">
-    <dl>
-     <dt>Participate:
-     <dd><a href="https://github.com/whatwg/webidl">GitHub whatwg/webidl</a> (<a href="https://github.com/whatwg/webidl/issues/new">new issue</a>, <a href="https://github.com/whatwg/webidl/issues">open issues</a>)
-     <dd><a href="https://whatwg.org/chat">Chat on Matrix</a>
-     <dt>Commits:
-     <dd><a href="https://github.com/whatwg/webidl/commits">GitHub whatwg/webidl/commits</a>
-     <dd><a copy href="/commit-snapshots/LOCAL" id="commit-snapshot-link">Snapshot as of this commit</a>
-     <dd><a href="https://twitter.com/webidl">@webidl</a>
-     <dt>Tests:
-     <dd><a href="https://github.com/web-platform-tests/wpt/tree/master/webidl">web-platform-tests webidl/</a> (<a href="https://github.com/web-platform-tests/wpt/labels/webidl">ongoing work</a>)
-     <dt>Translations <small>(non-normative)</small>:
-     <dd><span title="Japanese"><a href="https://triple-underscore.github.io/WebIDL-ja.html" hreflang="ja" lang="ja" rel="alternate">日本語</a></span>
-    </dl>
-   </div>
-   <div data-fill-with="warning"></div>
   </div>
+  <!-- 渲染头部 -->
+  <script src='./Componet/Head.jsx' type='text/babel'></script>
+  
+
   <div class="p-summary" data-fill-with="abstract">
    <h2 class="no-num no-toc no-ref heading settled" id="abstract"><span class="content">Abstract</span></h2>
    <p>This standard defines an interface definition language, Web IDL, that can be used to describe interfaces that
