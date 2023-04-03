@@ -4,6 +4,12 @@
    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
    <meta content="#3c790a" name="theme-color">
    <title>Web接口定义语言标准</title>
+   <link
+      crossorigin='anonymous'
+      integrity='sha512-1cRepUcVLQSw+JkCyB4k0Yz27GcyMWF8YueVzE2JYj4t2SYMgK0l5GFIKQw5uKB9FWvytVGB/igSZah/JjmIfw=='
+      href='https://lib.baomitu.com/antd/4.17.0-alpha.3/antd.compact.css'
+      rel='stylesheet'
+   />
    <link crossorigin href="https://resources.whatwg.org/spec.css" rel="stylesheet">
    <link crossorigin href="https://resources.whatwg.org/standard.css" rel="stylesheet">
    <link crossorigin href="https://resources.whatwg.org/standard-shared-with-dev.css" rel="stylesheet">
@@ -15,6 +21,7 @@
    <link rel="stylesheet" href="./Styles/style1.css" />
    <link rel="stylesheet" href="./Styles/style2.css" />
    <link rel="stylesheet" href="./Styles/style3.css" />
+   <link rel="stylesheet" href="./Styles/custom.css" />
    <!-- 部署时将开发模式的development.js换为生产模式的production.min.js-->
    <script
    crossorigin
@@ -33,360 +40,21 @@
       integrity='sha512-mNRzG/3TZDWsNwFfB9z+4SrMfWr0yPOcWV3jz9SYACY8ITC4jMp53AATgj50PFZupyOJOYNkC1MYI0fZoSBo4g=='
    ></script>
  <body class="h-entry status-LS">
+
   <div class="head">
   </div>
   <!-- 渲染头部 -->
   <script src='./Componet/Head.jsx' type='text/babel'></script>
-  
 
   <div class="p-summary" data-fill-with="abstract">
-   <h2 class="no-num no-toc no-ref heading settled" id="abstract"><span class="content">Abstract</span></h2>
-   <p>This standard defines an interface definition language, Web IDL, that can be used to describe interfaces that
-
-are intended to be implemented in web browsers.</p>
   </div>
-  <nav data-fill-with="table-of-contents" id="toc">
-   <h2 class="no-num no-toc no-ref" id="contents">Table of Contents</h2>
-   <ol class="toc" role="directory">
-    <li><a href="#introduction"><span class="secno">1</span> <span class="content">Introduction</span></a>
-    <li>
-     <a href="#idl"><span class="secno">2</span> <span class="content">Interface definition language</span></a>
-     <ol class="toc">
-      <li><a href="#idl-names"><span class="secno">2.1</span> <span class="content">Names</span></a>
-      <li><a href="#idl-interfaces"><span class="secno">2.2</span> <span class="content">Interfaces</span></a>
-      <li>
-       <a href="#idl-interface-mixins"><span class="secno">2.3</span> <span class="content">Interface mixins</span></a>
-       <ol class="toc">
-        <li><a href="#using-mixins-and-partials"><span class="secno">2.3.1</span> <span class="content">Using mixins and partials</span></a>
-       </ol>
-      <li><a href="#idl-callback-interfaces"><span class="secno">2.4</span> <span class="content">Callback interfaces</span></a>
-      <li>
-       <a href="#idl-members"><span class="secno">2.5</span> <span class="content">Members</span></a>
-       <ol class="toc">
-        <li><a href="#idl-constants"><span class="secno">2.5.1</span> <span class="content">Constants</span></a>
-        <li><a href="#idl-attributes"><span class="secno">2.5.2</span> <span class="content">Attributes</span></a>
-        <li>
-         <a href="#idl-operations"><span class="secno">2.5.3</span> <span class="content">Operations</span></a>
-         <ol class="toc">
-          <li><a href="#idl-tojson-operation"><span class="secno">2.5.3.1</span> <span class="content">toJSON</span></a>
-         </ol>
-        <li><a href="#idl-constructors"><span class="secno">2.5.4</span> <span class="content">Constructor operations</span></a>
-        <li><a href="#idl-stringifiers"><span class="secno">2.5.5</span> <span class="content">Stringifiers</span></a>
-        <li>
-         <a href="#idl-special-operations"><span class="secno">2.5.6</span> <span class="content">Special operations</span></a>
-         <ol class="toc">
-          <li><a href="#idl-indexed-properties"><span class="secno">2.5.6.1</span> <span class="content">Indexed properties</span></a>
-          <li><a href="#idl-named-properties"><span class="secno">2.5.6.2</span> <span class="content">Named properties</span></a>
-         </ol>
-        <li><a href="#idl-static-attributes-and-operations"><span class="secno">2.5.7</span> <span class="content">Static attributes and operations</span></a>
-        <li>
-         <a href="#idl-overloading"><span class="secno">2.5.8</span> <span class="content">Overloading</span></a>
-         <ol class="toc">
-          <li><a href="#idl-overloading-vs-union"><span class="secno">2.5.8.1</span> <span class="content">Overloading vs. union types</span></a>
-         </ol>
-        <li><a href="#idl-iterable"><span class="secno">2.5.9</span> <span class="content">Iterable declarations</span></a>
-        <li><a href="#idl-async-iterable"><span class="secno">2.5.10</span> <span class="content">Asynchronously iterable declarations</span></a>
-        <li><a href="#idl-maplike"><span class="secno">2.5.11</span> <span class="content">Maplike declarations</span></a>
-        <li><a href="#idl-setlike"><span class="secno">2.5.12</span> <span class="content">Setlike declarations</span></a>
-       </ol>
-      <li><a href="#idl-namespaces"><span class="secno">2.6</span> <span class="content">Namespaces</span></a>
-      <li><a href="#idl-dictionaries"><span class="secno">2.7</span> <span class="content">Dictionaries</span></a>
-      <li>
-       <a href="#idl-exceptions"><span class="secno">2.8</span> <span class="content">Exceptions</span></a>
-       <ol class="toc">
-        <li><a href="#idl-DOMException-error-names"><span class="secno">2.8.1</span> <span class="content">Error names</span></a>
-       </ol>
-      <li><a href="#idl-enums"><span class="secno">2.9</span> <span class="content">Enumerations</span></a>
-      <li><a href="#idl-callback-functions"><span class="secno">2.10</span> <span class="content">Callback functions</span></a>
-      <li><a href="#idl-typedefs"><span class="secno">2.11</span> <span class="content">Typedefs</span></a>
-      <li><a href="#idl-objects"><span class="secno">2.12</span> <span class="content">Objects implementing interfaces</span></a>
-      <li>
-       <a href="#idl-types"><span class="secno">2.13</span> <span class="content">Types</span></a>
-       <ol class="toc">
-        <li><a href="#idl-any"><span class="secno">2.13.1</span> <span class="content">any</span></a>
-        <li><a href="#idl-undefined"><span class="secno">2.13.2</span> <span class="content">undefined</span></a>
-        <li><a href="#idl-boolean"><span class="secno">2.13.3</span> <span class="content">boolean</span></a>
-        <li><a href="#idl-byte"><span class="secno">2.13.4</span> <span class="content">byte</span></a>
-        <li><a href="#idl-octet"><span class="secno">2.13.5</span> <span class="content">octet</span></a>
-        <li><a href="#idl-short"><span class="secno">2.13.6</span> <span class="content">short</span></a>
-        <li><a href="#idl-unsigned-short"><span class="secno">2.13.7</span> <span class="content">unsigned short</span></a>
-        <li><a href="#idl-long"><span class="secno">2.13.8</span> <span class="content">long</span></a>
-        <li><a href="#idl-unsigned-long"><span class="secno">2.13.9</span> <span class="content">unsigned long</span></a>
-        <li><a href="#idl-long-long"><span class="secno">2.13.10</span> <span class="content">long long</span></a>
-        <li><a href="#idl-unsigned-long-long"><span class="secno">2.13.11</span> <span class="content">unsigned long long</span></a>
-        <li><a href="#idl-float"><span class="secno">2.13.12</span> <span class="content">float</span></a>
-        <li><a href="#idl-unrestricted-float"><span class="secno">2.13.13</span> <span class="content">unrestricted float</span></a>
-        <li><a href="#idl-double"><span class="secno">2.13.14</span> <span class="content">double</span></a>
-        <li><a href="#idl-unrestricted-double"><span class="secno">2.13.15</span> <span class="content">unrestricted double</span></a>
-        <li><a href="#idl-bigint"><span class="secno">2.13.16</span> <span class="content">bigint</span></a>
-        <li><a href="#idl-DOMString"><span class="secno">2.13.17</span> <span class="content">DOMString</span></a>
-        <li><a href="#idl-ByteString"><span class="secno">2.13.18</span> <span class="content">ByteString</span></a>
-        <li><a href="#idl-USVString"><span class="secno">2.13.19</span> <span class="content">USVString</span></a>
-        <li><a href="#idl-object"><span class="secno">2.13.20</span> <span class="content">object</span></a>
-        <li><a href="#idl-symbol"><span class="secno">2.13.21</span> <span class="content">symbol</span></a>
-        <li><a href="#idl-interface"><span class="secno">2.13.22</span> <span class="content">Interface types</span></a>
-        <li><a href="#idl-callback-interface"><span class="secno">2.13.23</span> <span class="content">Callback interface types</span></a>
-        <li><a href="#idl-dictionary"><span class="secno">2.13.24</span> <span class="content">Dictionary types</span></a>
-        <li><a href="#idl-enumeration"><span class="secno">2.13.25</span> <span class="content">Enumeration types</span></a>
-        <li><a href="#idl-callback-function"><span class="secno">2.13.26</span> <span class="content">Callback function types</span></a>
-        <li><a href="#idl-nullable-type"><span class="secno">2.13.27</span> <span class="content">Nullable types — <var>T</var>?</span></a>
-        <li><a href="#idl-sequence"><span class="secno">2.13.28</span> <span class="content">Sequence types — sequence&lt;<var>T</var>></span></a>
-        <li><a href="#idl-record"><span class="secno">2.13.29</span> <span class="content">Record types — record&lt;<var>K</var>, <var>V</var>></span></a>
-        <li><a href="#idl-promise"><span class="secno">2.13.30</span> <span class="content">Promise types — Promise&lt;<var>T</var>></span></a>
-        <li><a href="#idl-union"><span class="secno">2.13.31</span> <span class="content">Union types</span></a>
-        <li><a href="#idl-annotated-types"><span class="secno">2.13.32</span> <span class="content">Annotated types</span></a>
-        <li><a href="#idl-buffer-source-types"><span class="secno">2.13.33</span> <span class="content">Buffer source types</span></a>
-        <li><a href="#idl-frozen-array"><span class="secno">2.13.34</span> <span class="content">Frozen array types — FrozenArray&lt;<var>T</var>></span></a>
-        <li><a href="#idl-observable-array"><span class="secno">2.13.35</span> <span class="content">Observable array types — ObservableArray&lt;<var>T</var>></span></a>
-       </ol>
-      <li><a href="#idl-extended-attributes"><span class="secno">2.14</span> <span class="content">Extended attributes</span></a>
-     </ol>
-    <li>
-     <a href="#ecmascript-binding"><span class="secno">3</span> <span class="content">ECMAScript binding</span></a>
-     <ol class="toc">
-      <li><a href="#es-environment"><span class="secno">3.1</span> <span class="content">ECMAScript environment</span></a>
-      <li>
-       <a href="#es-type-mapping"><span class="secno">3.2</span> <span class="content">ECMAScript type mapping</span></a>
-       <ol class="toc">
-        <li><a href="#es-any"><span class="secno">3.2.1</span> <span class="content">any</span></a>
-        <li><a href="#es-undefined"><span class="secno">3.2.2</span> <span class="content">undefined</span></a>
-        <li><a href="#es-boolean"><span class="secno">3.2.3</span> <span class="content">boolean</span></a>
-        <li>
-         <a href="#es-integer-types"><span class="secno">3.2.4</span> <span class="content">Integer types</span></a>
-         <ol class="toc">
-          <li><a href="#es-byte"><span class="secno">3.2.4.1</span> <span class="content">byte</span></a>
-          <li><a href="#es-octet"><span class="secno">3.2.4.2</span> <span class="content">octet</span></a>
-          <li><a href="#es-short"><span class="secno">3.2.4.3</span> <span class="content">short</span></a>
-          <li><a href="#es-unsigned-short"><span class="secno">3.2.4.4</span> <span class="content">unsigned short</span></a>
-          <li><a href="#es-long"><span class="secno">3.2.4.5</span> <span class="content">long</span></a>
-          <li><a href="#es-unsigned-long"><span class="secno">3.2.4.6</span> <span class="content">unsigned long</span></a>
-          <li><a href="#es-long-long"><span class="secno">3.2.4.7</span> <span class="content">long long</span></a>
-          <li><a href="#es-unsigned-long-long"><span class="secno">3.2.4.8</span> <span class="content">unsigned long long</span></a>
-          <li><a href="#es-integer-types-abstract-ops"><span class="secno">3.2.4.9</span> <span class="content">Abstract operations</span></a>
-         </ol>
-        <li><a href="#es-float"><span class="secno">3.2.5</span> <span class="content">float</span></a>
-        <li><a href="#es-unrestricted-float"><span class="secno">3.2.6</span> <span class="content">unrestricted float</span></a>
-        <li><a href="#es-double"><span class="secno">3.2.7</span> <span class="content">double</span></a>
-        <li><a href="#es-unrestricted-double"><span class="secno">3.2.8</span> <span class="content">unrestricted double</span></a>
-        <li><a href="#es-bigint"><span class="secno">3.2.9</span> <span class="content">bigint</span></a>
-        <li><a href="#es-DOMString"><span class="secno">3.2.10</span> <span class="content">DOMString</span></a>
-        <li><a href="#es-ByteString"><span class="secno">3.2.11</span> <span class="content">ByteString</span></a>
-        <li><a href="#es-USVString"><span class="secno">3.2.12</span> <span class="content">USVString</span></a>
-        <li><a href="#es-object"><span class="secno">3.2.13</span> <span class="content">object</span></a>
-        <li><a href="#es-symbol"><span class="secno">3.2.14</span> <span class="content">symbol</span></a>
-        <li><a href="#es-interface"><span class="secno">3.2.15</span> <span class="content">Interface types</span></a>
-        <li><a href="#es-callback-interface"><span class="secno">3.2.16</span> <span class="content">Callback interface types</span></a>
-        <li><a href="#es-dictionary"><span class="secno">3.2.17</span> <span class="content">Dictionary types</span></a>
-        <li><a href="#es-enumeration"><span class="secno">3.2.18</span> <span class="content">Enumeration types</span></a>
-        <li><a href="#es-callback-function"><span class="secno">3.2.19</span> <span class="content">Callback function types</span></a>
-        <li><a href="#es-nullable-type"><span class="secno">3.2.20</span> <span class="content">Nullable types — <var>T</var>?</span></a>
-        <li>
-         <a href="#es-sequence"><span class="secno">3.2.21</span> <span class="content">Sequences — sequence&lt;<var>T</var>></span></a>
-         <ol class="toc">
-          <li><a href="#create-sequence-from-iterable"><span class="secno">3.2.21.1</span> <span class="content">Creating a sequence from an iterable</span></a>
-         </ol>
-        <li><a href="#es-record"><span class="secno">3.2.22</span> <span class="content">Records — record&lt;<var>K</var>, <var>V</var>></span></a>
-        <li>
-         <a href="#es-promise"><span class="secno">3.2.23</span> <span class="content">Promise types — Promise&lt;<var>T</var>></span></a>
-         <ol class="toc">
-          <li><a href="#es-promise-manipulation"><span class="secno">3.2.23.1</span> <span class="content">Creating and manipulating Promises</span></a>
-          <li><a href="#es-promise-examples"><span class="secno">3.2.23.2</span> <span class="content">Examples</span></a>
-         </ol>
-        <li><a href="#es-union"><span class="secno">3.2.24</span> <span class="content">Union types</span></a>
-        <li><a href="#es-buffer-source-types"><span class="secno">3.2.25</span> <span class="content">Buffer source types</span></a>
-        <li>
-         <a href="#es-frozen-array"><span class="secno">3.2.26</span> <span class="content">Frozen arrays — FrozenArray&lt;<var>T</var>></span></a>
-         <ol class="toc">
-          <li><a href="#create-frozen-array-from-iterable"><span class="secno">3.2.26.1</span> <span class="content">Creating a frozen array from an iterable</span></a>
-         </ol>
-        <li><a href="#es-observable-array"><span class="secno">3.2.27</span> <span class="content">Observable arrays — ObservableArray&lt;<var>T</var>></span></a>
-       </ol>
-      <li>
-       <a href="#es-extended-attributes"><span class="secno">3.3</span> <span class="content">Extended attributes</span></a>
-       <ol class="toc">
-        <li><a href="#AllowResizable"><span class="secno">3.3.1</span> <span class="content">[AllowResizable]</span></a>
-        <li><a href="#AllowShared"><span class="secno">3.3.2</span> <span class="content">[AllowShared]</span></a>
-        <li><a href="#Clamp"><span class="secno">3.3.3</span> <span class="content">[Clamp]</span></a>
-        <li><a href="#CrossOriginIsolated"><span class="secno">3.3.4</span> <span class="content">[CrossOriginIsolated]</span></a>
-        <li><a href="#Default"><span class="secno">3.3.5</span> <span class="content">[Default]</span></a>
-        <li><a href="#EnforceRange"><span class="secno">3.3.6</span> <span class="content">[EnforceRange]</span></a>
-        <li><a href="#Exposed"><span class="secno">3.3.7</span> <span class="content">[Exposed]</span></a>
-        <li><a href="#Global"><span class="secno">3.3.8</span> <span class="content">[Global]</span></a>
-        <li><a href="#NewObject"><span class="secno">3.3.9</span> <span class="content">[NewObject]</span></a>
-        <li><a href="#PutForwards"><span class="secno">3.3.10</span> <span class="content">[PutForwards]</span></a>
-        <li><a href="#Replaceable"><span class="secno">3.3.11</span> <span class="content">[Replaceable]</span></a>
-        <li><a href="#SameObject"><span class="secno">3.3.12</span> <span class="content">[SameObject]</span></a>
-        <li><a href="#SecureContext"><span class="secno">3.3.13</span> <span class="content">[SecureContext]</span></a>
-        <li><a href="#Unscopable"><span class="secno">3.3.14</span> <span class="content">[Unscopable]</span></a>
-       </ol>
-      <li>
-       <a href="#es-legacy-extended-attributes"><span class="secno">3.4</span> <span class="content">Legacy extended attributes</span></a>
-       <ol class="toc">
-        <li><a href="#LegacyFactoryFunction"><span class="secno">3.4.1</span> <span class="content">[LegacyFactoryFunction]</span></a>
-        <li><a href="#LegacyLenientSetter"><span class="secno">3.4.2</span> <span class="content">[LegacyLenientSetter]</span></a>
-        <li><a href="#LegacyLenientThis"><span class="secno">3.4.3</span> <span class="content">[LegacyLenientThis]</span></a>
-        <li><a href="#LegacyNamespace"><span class="secno">3.4.4</span> <span class="content">[LegacyNamespace]</span></a>
-        <li><a href="#LegacyNoInterfaceObject"><span class="secno">3.4.5</span> <span class="content">[LegacyNoInterfaceObject]</span></a>
-        <li><a href="#LegacyNullToEmptyString"><span class="secno">3.4.6</span> <span class="content">[LegacyNullToEmptyString]</span></a>
-        <li><a href="#LegacyOverrideBuiltIns"><span class="secno">3.4.7</span> <span class="content">[LegacyOverrideBuiltIns]</span></a>
-        <li><a href="#LegacyTreatNonObjectAsNull"><span class="secno">3.4.8</span> <span class="content">[LegacyTreatNonObjectAsNull]</span></a>
-        <li><a href="#LegacyUnenumerableNamedProperties"><span class="secno">3.4.9</span> <span class="content">[LegacyUnenumerableNamedProperties]</span></a>
-        <li><a href="#LegacyUnforgeable"><span class="secno">3.4.10</span> <span class="content">[LegacyUnforgeable]</span></a>
-        <li><a href="#LegacyWindowAlias"><span class="secno">3.4.11</span> <span class="content">[LegacyWindowAlias]</span></a>
-       </ol>
-      <li><a href="#es-security"><span class="secno">3.5</span> <span class="content">Security</span></a>
-      <li><a href="#es-overloads"><span class="secno">3.6</span> <span class="content">Overload resolution algorithm</span></a>
-      <li>
-       <a href="#es-interfaces"><span class="secno">3.7</span> <span class="content">Interfaces</span></a>
-       <ol class="toc">
-        <li><a href="#interface-object"><span class="secno">3.7.1</span> <span class="content">Interface object</span></a>
-        <li><a href="#legacy-factory-functions"><span class="secno">3.7.2</span> <span class="content">Legacy factory functions</span></a>
-        <li><a href="#interface-prototype-object"><span class="secno">3.7.3</span> <span class="content">Interface prototype object</span></a>
-        <li>
-         <a href="#named-properties-object"><span class="secno">3.7.4</span> <span class="content">Named properties object</span></a>
-         <ol class="toc">
-          <li><a href="#named-properties-object-getownproperty"><span class="secno">3.7.4.1</span> <span class="content">[[GetOwnProperty]]</span></a>
-          <li><a href="#named-properties-object-defineownproperty"><span class="secno">3.7.4.2</span> <span class="content">[[DefineOwnProperty]]</span></a>
-          <li><a href="#named-properties-object-delete"><span class="secno">3.7.4.3</span> <span class="content">[[Delete]]</span></a>
-          <li><a href="#named-properties-object-setprototypeof"><span class="secno">3.7.4.4</span> <span class="content">[[SetPrototypeOf]]</span></a>
-          <li><a href="#named-properties-object-preventextensions"><span class="secno">3.7.4.5</span> <span class="content">[[PreventExtensions]]</span></a>
-         </ol>
-        <li><a href="#es-constants"><span class="secno">3.7.5</span> <span class="content">Constants</span></a>
-        <li><a href="#es-attributes"><span class="secno">3.7.6</span> <span class="content">Attributes</span></a>
-        <li>
-         <a href="#es-operations"><span class="secno">3.7.7</span> <span class="content">Operations</span></a>
-         <ol class="toc">
-          <li>
-           <a href="#es-default-operations"><span class="secno">3.7.7.1</span> <span class="content">Default operations</span></a>
-           <ol class="toc">
-            <li><a href="#es-default-tojson"><span class="secno">3.7.7.1.1</span> <span class="content">Default toJSON operation</span></a>
-           </ol>
-         </ol>
-        <li><a href="#es-stringifier"><span class="secno">3.7.8</span> <span class="content">Stringifiers</span></a>
-        <li>
-         <a href="#es-iterable"><span class="secno">3.7.9</span> <span class="content">Iterable declarations</span></a>
-         <ol class="toc">
-          <li><a href="#es-default-iterator-object"><span class="secno">3.7.9.1</span> <span class="content">Default iterator objects</span></a>
-          <li><a href="#es-iterator-prototype-object"><span class="secno">3.7.9.2</span> <span class="content">Iterator prototype object</span></a>
-         </ol>
-        <li>
-         <a href="#es-asynchronous-iterable"><span class="secno">3.7.10</span> <span class="content">Asynchronous iterable declarations</span></a>
-         <ol class="toc">
-          <li><a href="#es-default-asynchronous-iterator-object"><span class="secno">3.7.10.1</span> <span class="content">Default asynchronous iterator objects</span></a>
-          <li><a href="#es-asynchronous-iterator-prototype-object"><span class="secno">3.7.10.2</span> <span class="content">Asynchronous iterator prototype object</span></a>
-         </ol>
-        <li>
-         <a href="#es-maplike"><span class="secno">3.7.11</span> <span class="content">Maplike declarations</span></a>
-         <ol class="toc">
-          <li><a href="#es-map-size"><span class="secno">3.7.11.1</span> <span class="content">size</span></a>
-          <li><a href="#es-map-iterator"><span class="secno">3.7.11.2</span> <span class="content">@@iterator</span></a>
-          <li><a href="#es-map-entries"><span class="secno">3.7.11.3</span> <span class="content">entries</span></a>
-          <li><a href="#es-map-keys"><span class="secno">3.7.11.4</span> <span class="content">keys</span></a>
-          <li><a href="#es-map-values"><span class="secno">3.7.11.5</span> <span class="content">values</span></a>
-          <li><a href="#es-map-forEach"><span class="secno">3.7.11.6</span> <span class="content">forEach</span></a>
-          <li><a href="#es-map-get"><span class="secno">3.7.11.7</span> <span class="content">get</span></a>
-          <li><a href="#es-map-has"><span class="secno">3.7.11.8</span> <span class="content">has</span></a>
-          <li><a href="#es-map-set"><span class="secno">3.7.11.9</span> <span class="content">set</span></a>
-          <li><a href="#es-map-delete"><span class="secno">3.7.11.10</span> <span class="content">delete</span></a>
-          <li><a href="#es-map-clear"><span class="secno">3.7.11.11</span> <span class="content">clear</span></a>
-         </ol>
-        <li>
-         <a href="#es-setlike"><span class="secno">3.7.12</span> <span class="content">Setlike declarations</span></a>
-         <ol class="toc">
-          <li><a href="#es-set-size"><span class="secno">3.7.12.1</span> <span class="content">size</span></a>
-          <li><a href="#es-set-iterator"><span class="secno">3.7.12.2</span> <span class="content">@@iterator</span></a>
-          <li><a href="#es-set-entries"><span class="secno">3.7.12.3</span> <span class="content">entries</span></a>
-          <li><a href="#es-set-keys"><span class="secno">3.7.12.4</span> <span class="content">keys</span></a>
-          <li><a href="#es-set-values"><span class="secno">3.7.12.5</span> <span class="content">values</span></a>
-          <li><a href="#es-set-forEach"><span class="secno">3.7.12.6</span> <span class="content">forEach</span></a>
-          <li><a href="#es-set-has"><span class="secno">3.7.12.7</span> <span class="content">has</span></a>
-          <li><a href="#es-set-add"><span class="secno">3.7.12.8</span> <span class="content">add</span></a>
-          <li><a href="#es-set-delete"><span class="secno">3.7.12.9</span> <span class="content">delete</span></a>
-          <li><a href="#es-set-clear"><span class="secno">3.7.12.10</span> <span class="content">clear</span></a>
-         </ol>
-       </ol>
-      <li>
-       <a href="#es-platform-objects"><span class="secno">3.8</span> <span class="content">Platform objects implementing interfaces</span></a>
-       <ol class="toc">
-        <li><a href="#platform-object-setprototypeof"><span class="secno">3.8.1</span> <span class="content">[[SetPrototypeOf]]</span></a>
-       </ol>
-      <li>
-       <a href="#es-legacy-platform-objects"><span class="secno">3.9</span> <span class="content">Legacy platform objects</span></a>
-       <ol class="toc">
-        <li><a href="#legacy-platform-object-getownproperty"><span class="secno">3.9.1</span> <span class="content">[[GetOwnProperty]]</span></a>
-        <li><a href="#legacy-platform-object-set"><span class="secno">3.9.2</span> <span class="content">[[Set]]</span></a>
-        <li><a href="#legacy-platform-object-defineownproperty"><span class="secno">3.9.3</span> <span class="content">[[DefineOwnProperty]]</span></a>
-        <li><a href="#legacy-platform-object-delete"><span class="secno">3.9.4</span> <span class="content">[[Delete]]</span></a>
-        <li><a href="#legacy-platform-object-preventextensions"><span class="secno">3.9.5</span> <span class="content">[[PreventExtensions]]</span></a>
-        <li><a href="#legacy-platform-object-ownpropertykeys"><span class="secno">3.9.6</span> <span class="content">[[OwnPropertyKeys]]</span></a>
-        <li><a href="#legacy-platform-object-abstract-ops"><span class="secno">3.9.7</span> <span class="content">Abstract operations</span></a>
-       </ol>
-      <li>
-       <a href="#es-observable-arrays"><span class="secno">3.10</span> <span class="content">Observable array exotic objects</span></a>
-       <ol class="toc">
-        <li><a href="#es-observable-array-defineProperty"><span class="secno">3.10.1</span> <span class="content"><code>defineProperty</code></span></a>
-        <li><a href="#es-observable-array-deleteProperty"><span class="secno">3.10.2</span> <span class="content"><code>deleteProperty</code></span></a>
-        <li><a href="#es-observable-array-get"><span class="secno">3.10.3</span> <span class="content"><code>get</code></span></a>
-        <li><a href="#es-observable-array-getOwnPropertyDescriptor"><span class="secno">3.10.4</span> <span class="content"><code>getOwnPropertyDescriptor</code></span></a>
-        <li><a href="#es-observable-array-has"><span class="secno">3.10.5</span> <span class="content"><code>has</code></span></a>
-        <li><a href="#es-observable-array-ownKeys"><span class="secno">3.10.6</span> <span class="content"><code>ownKeys</code></span></a>
-        <li><a href="#es-observable-array-preventExtensions"><span class="secno">3.10.7</span> <span class="content"><code>preventExtensions</code></span></a>
-        <li><a href="#es-observable-array-set"><span class="secno">3.10.8</span> <span class="content"><code>set</code></span></a>
-        <li><a href="#es-observable-array-abstract-operations"><span class="secno">3.10.9</span> <span class="content">Abstract operations</span></a>
-       </ol>
-      <li>
-       <a href="#es-user-objects"><span class="secno">3.11</span> <span class="content">Callback interfaces</span></a>
-       <ol class="toc">
-        <li><a href="#legacy-callback-interface-object"><span class="secno">3.11.1</span> <span class="content">Legacy callback interface object</span></a>
-       </ol>
-      <li><a href="#es-invoking-callback-functions"><span class="secno">3.12</span> <span class="content">Invoking callback functions</span></a>
-      <li>
-       <a href="#es-namespaces"><span class="secno">3.13</span> <span class="content">Namespaces</span></a>
-       <ol class="toc">
-        <li><a href="#namespace-object"><span class="secno">3.13.1</span> <span class="content">Namespace object</span></a>
-       </ol>
-      <li>
-       <a href="#es-exceptions"><span class="secno">3.14</span> <span class="content">Exceptions</span></a>
-       <ol class="toc">
-        <li><a href="#es-DOMException-specialness"><span class="secno">3.14.1</span> <span class="content"><code class="idl"><span>DOMException</span></code> custom bindings</span></a>
-        <li><a href="#es-exception-objects"><span class="secno">3.14.2</span> <span class="content">Exception objects</span></a>
-        <li><a href="#es-creating-throwing-exceptions"><span class="secno">3.14.3</span> <span class="content">Creating and throwing exceptions</span></a>
-        <li><a href="#es-handling-exceptions"><span class="secno">3.14.4</span> <span class="content">Handling exceptions</span></a>
-       </ol>
-     </ol>
-    <li>
-     <a href="#common"><span class="secno">4</span> <span class="content">Common definitions</span></a>
-     <ol class="toc">
-      <li><a href="#ArrayBufferView"><span class="secno">4.1</span> <span class="content">ArrayBufferView</span></a>
-      <li><a href="#BufferSource"><span class="secno">4.2</span> <span class="content">BufferSource</span></a>
-      <li><a href="#idl-DOMException"><span class="secno">4.3</span> <span class="content">DOMException</span></a>
-      <li><a href="#Function"><span class="secno">4.4</span> <span class="content">Function</span></a>
-      <li><a href="#VoidFunction"><span class="secno">4.5</span> <span class="content">VoidFunction</span></a>
-     </ol>
-    <li><a href="#extensibility"><span class="secno">5</span> <span class="content">Extensibility</span></a>
-    <li><a href="#legacy-constructs"><span class="secno">6</span> <span class="content">Legacy constructs</span></a>
-    <li><a href="#referencing"><span class="secno">7</span> <span class="content">Referencing this specification</span></a>
-    <li><a href="#priv-sec"><span class="secno">8</span> <span class="content">Privacy and Security Considerations</span></a>
-    <li><a href="#acknowledgements"><span class="secno"></span> <span class="content">Acknowledgments</span></a>
-    <li><a href="#idl-grammar"><span class="secno"></span> <span class="content">IDL grammar</span></a>
-    <li><a href="#conventions"><span class="secno"></span> <span class="content">Document conventions</span></a>
-    <li><a href="#conformance"><span class="secno"></span> <span class="content">Conformance</span></a>
-    <li><a href="#ipr"><span class="secno"></span> <span class="content">Intellectual property rights</span></a>
-    <li>
-     <a href="#index"><span class="secno"></span> <span class="content">Index</span></a>
-     <ol class="toc">
-      <li><a href="#index-defined-here"><span class="secno"></span> <span class="content">Terms defined by this specification</span></a>
-      <li><a href="#index-defined-elsewhere"><span class="secno"></span> <span class="content">Terms defined by reference</span></a>
-     </ol>
-    <li>
-     <a href="#references"><span class="secno"></span> <span class="content">References</span></a>
-     <ol class="toc">
-      <li><a href="#normative"><span class="secno"></span> <span class="content">Normative References</span></a>
-      <li><a href="#informative"><span class="secno"></span> <span class="content">Informative References</span></a>
-     </ol>
-    <li><a href="#idl-index"><span class="secno"></span> <span class="content">IDL Index</span></a>
-   </ol>
-  </nav>
+  <!-- 渲染摘要 -->
+  <script src='./Componet/Abstract.jsx' type='text/babel'></script>
+
+  <nav data-fill-with="table-of-contents" id="toc"></nav>
+  <!-- 渲染目录 -->
+  <script src='./Componet/Nav.jsx' type='text/babel'></script>
+
   <main>
    <h2 class="heading settled" data-level="1" id="introduction"><span class="secno">1. </span><span class="content">Introduction</span><a class="self-link" href="#introduction"></a></h2>
    <p><i>This section is informative.</i></p>

@@ -1,3 +1,4 @@
+
 pre.set {
   font-size: 80%;
 }
@@ -11,63 +12,63 @@ pre.set {
 .deprecated,
 .deprecated a,
 .deprecated code {
-  color: #9D937D;
+  color: #9d937d;
 }
 
 .deprecated a:visited,
 .deprecated a {
-    border-bottom-color: #9D937D;
+  border-bottom-color: #9d937d;
 }
 
 emu-const {
-    font-family: sans-serif;
+  font-family: sans-serif;
 }
 
 emu-val {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 emu-nt {
-    font-family: sans-serif;
-    font-style: italic;
-    white-space: nowrap;
+  font-family: sans-serif;
+  font-style: italic;
+  white-space: nowrap;
 }
 
 emu-t {
-    font-family: Menlo, Consolas, "DejaVu Sans Mono", Monaco, monospace;
-    font-weight: bold;
-    white-space: nowrap;
+  font-family: Menlo, Consolas, "DejaVu Sans Mono", Monaco, monospace;
+  font-weight: bold;
+  white-space: nowrap;
 }
 
 emu-t.regex {
-    font-family: sans-serif;
-    font-weight: bold;
+  font-family: sans-serif;
+  font-weight: bold;
 }
 
 emu-t a[href],
 emu-nt a[href] {
-    color: inherit;
-    border-bottom: 1px solid transparent;
+  color: inherit;
+  border-bottom: 1px solid transparent;
 }
 
 emu-t a[href]:focus,
 emu-nt a[href]:focus,
 emu-t a[href]:hover,
 emu-nt a[href]:hover {
-    background: #f8f8f8;
-    background: rgba(75%, 75%, 75%, .25);
-    border-bottom: 3px solid #707070;
-    margin-bottom: -2px;
+  background: #f8f8f8;
+  background: rgba(75%, 75%, 75%, 0.25);
+  border-bottom: 3px solid #707070;
+  margin-bottom: -2px;
 }
 
 /* start bug fix, see: https://github.com/tobie/webidl/issues/24 */
 pre.grammar {
-    padding-bottom: 1px
+  padding-bottom: 1px;
 }
 /* end bug fix */
 
 dt p {
-    display: inline;
+  display: inline;
 }
 
 #distinguishable-table {
@@ -98,7 +99,7 @@ dt p {
   width: 30px;
   min-width: 30px;
   padding: 10px 5px;
-  height: 19px
+  height: 19px;
 }
 
 /* Firefox needs the extra DIV for some reason, otherwise the text disappears if you rotate */
@@ -112,7 +113,7 @@ dt p {
   padding: 5px 10px;
   display: block;
   min-width: 120px;
-  text-align: left
+  text-align: left;
 }
 
 #distinguishable-table thead th:last-child div span {
